@@ -40,8 +40,8 @@ FlowRouter.route('/paywall', {
   name: 'paywall',
   action: function(params, query) {
     // disable paywall for now
-    // FlowRouter.go('/');
-    BlazeLayout.render('layout', { content: 'paywall' });
+    FlowRouter.go('/');
+    // BlazeLayout.render('layout', { content: 'paywall' });
   }
 });
 
