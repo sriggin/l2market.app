@@ -14,6 +14,8 @@ const _callback = (res, error, result, okCode) => {
   } else if (result) {
     res.writeHead(okCode, { 'Content-Type': 'text/plain' });
     res.end('OK\n');
+  } else {
+    res.end();
   }
 };
 
