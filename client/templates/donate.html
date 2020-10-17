@@ -1,0 +1,33 @@
+<template name="donate">
+  <h1 style="margin-top: 2rem">Support the project</h1>
+  <p class="mb-0">Make a contribution to support the work of this project. The goal is to cover the monthly hosting costs.</p>
+  <p>All contributions will be listed below. If you'd like to be listed anonymously or with a nickname - please state so in the message.</p>
+  <p><strong>Thank you!</strong></p>
+  <form id="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick" />
+    <input type="hidden" name="hosted_button_id" value="V8EFFF8YGBN5U" />
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit"
+      title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
+    <span style="vertical-align:top;font-style:italic;font-size:0.7rem;display:inline-block;padding:2px 0 0 5px;color:#ffd36c">by PayPal</span>
+  </form>
+  {{#if donors}}
+  <table class="table mt-3" style="border: 2px solid #151521">
+    <thead>
+      <tr>
+        <th width="10%">Amount</th>
+        <th width="20%">Name</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each donors}}
+      <tr>
+        <td>${{amount}}</td>
+        <td>{{name}}</td>
+        <td>{{message}}</td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+  {{/if}}
+</template>

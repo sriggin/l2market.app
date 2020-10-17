@@ -1,0 +1,49 @@
+<template name="paywall">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-6">
+      <h1 style="text-align: center; font-size: 3rem; margin-top: 3rem;">${{valueNow}} <span style="font-weight: normal">/</span> ${{valueMax}}</h1>
+      <div class="progress" style="background-color: transparent; border: 1px solid #ffc439;">
+        <div class="progress-bar" role="progressbar" style="width: {{valueWidth}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <form id="donate" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-top: 2rem; text-align: center;">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="V8EFFF8YGBN5U" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit"
+          title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
+        <span style="vertical-align:top;font-style:italic;font-size:0.7rem;display:inline-block;padding:2px 0 0 5px;color:#ffd36c">by PayPal</span>
+      </form>
+      <p style="text-align: center; margin: 2rem 0;">
+        All donors will be sent a monthly access code as soon as possible.<br>
+        The site will be made public once we hit the monthly donation goal.<br>
+      </p>
+      <form id="access-code-form">
+        <div class="row justify-content-center" style="margin-bottom: 5rem">
+          <div class="col-6" style="padding: 0 5px">
+            <input type="text" class="form-control" id="access-code" placeholder="Enter access code">
+          </div>
+          <div class="col-2" style="padding: 0">
+            <button type="submit" class="btn btn-primary" style="width: 100%">Enter</button>
+          </div>
+        </div>
+      </form>
+      {{#if donors}}
+      <table class="table mt-3" style="border: 2px solid #151521">
+        <thead>
+          <tr>
+            <th width="20%">Amount</th>
+            <th width="80%">Name</th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#each donors}}
+          <tr>
+            <td>${{amount}}</td>
+            <td>{{name}}</td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+      {{/if}}
+    </div>
+  </div>
+</template>

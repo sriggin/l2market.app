@@ -1,0 +1,29 @@
+<template name="override-atPwdForm">
+  <!-- <p>
+    Account registration is currently disabled. Check back in a few days.
+    This will allow you to create alerts that will notify you about market changes.
+  </p> -->
+  <div class="at-pwd-form" style="max-width: 450px">
+    <form role="form" id="at-pwd-form" novalidate action="#" method="POST">
+      <fieldset {{disabled}}>
+        {{#each fields}}
+          {{> atInput}}
+        {{/each}}
+        {{#if showReCaptcha}}
+          {{> atReCaptcha}}
+        {{/if}}
+        {{#if showForgotPasswordLink}}
+          {{> atPwdLink}}
+        {{/if}}
+        {{> atPwdFormBtn}}
+      </fieldset>
+    </form>
+
+    <div>
+      <p class="mt-4">Not registered? <a href="#disabled" id="create-account">Create an account</a>.</p>
+      <div class="alert alert-primary d-none">
+        Account creation has been temporarily disabled.
+      </div>
+    </div>
+  </div>
+</template>

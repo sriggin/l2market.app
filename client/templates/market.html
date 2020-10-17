@@ -1,0 +1,68 @@
+<template name="market">
+  <div class="clearable">
+    <input id="search" type="text" class="form-control clearable" placeholder="Search for item..." required>
+    <i class="clearable-clear">&times;</i>
+  </div>
+  <div id="options">
+    <div class="form-check option {{optionsDisabledClass}}">
+      <input class="form-check-input" type="checkbox" value="1" id="shoptype-1" checked="checked" {{optionsDisabled}}>
+      <label class="form-check-label" for="shoptype-1">Sell</label>
+    </div>
+    <div class="form-check option {{optionsDisabledClass}}">
+      <input class="form-check-input" type="checkbox" value="3" id="shoptype-3" checked="checked" {{optionsDisabled}}>
+      <label class="form-check-label" for="shoptype-3">Buy</label>
+    </div>
+    <div class="form-check option {{optionsDisabledClass}}">
+      <input class="form-check-input" type="checkbox" value="8" id="shoptype-8" checked="checked" {{optionsDisabled}}>
+      <label class="form-check-label" for="shoptype-8">Package sale</label>
+    </div>
+  </div>
+  {{#if error}}
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+  {{/if}}
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th width="20%">Player</th>
+        <th width="38%">Item</th>
+        <th width="10%" class="text-right"><a class="sort-by" data-field="item.price">Price</a></th>
+        <th width="8%" class="text-right"><a class="sort-by" data-field="item.count">Count</a></th>
+        <th width="9%" class="text-right"><a class="sort-by" data-field="item.enchant">Enchant</a></th>
+        <th width="15%" class="text-right d-none d-sm-table-cell"><a class="sort-by" data-field="createdAt">Last seen</a></th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#if loaded}}
+      {{#each shopItems}}
+        {{> item}}
+      {{/each}}
+    {{else}}
+      <tr>
+        <td colspan="6" align="center">
+          <div class="spinner-border spinner-border-sm text-warning align-self-center"></div>
+        </td>
+      </tr>
+    {{/if}}
+    </tbody>
+  </table>
+</template>
+
+<template name="item">
+  <tr class="item shoptype-{{type}}">
+    <td>
+      <img src="/images/icons/shoptype{{type}}.png" class="field-item-shoptype">
+      <span class="field-player">{{player}}</span>
+    </td>
+    <td>
+      <div class="spinner-border spinner-border-sm"></div>
+      <img data-src="/images/items/{{item.id}}.jpg" height="19" class="field-item-img d-none">
+      <span class="field-item">{{item.text}}</span>
+    </td>
+    <td class="text-right">{{formatPrice item.price}}</td>
+    <td class="text-right">{{item.count}}</td>
+    <td class="text-right">{{formatEnchant item.enchant}}</td>
+    <td class="text-right d-none d-sm-table-cell">{{formatDate createdAt}}</td>
+  </tr>
+</template>
