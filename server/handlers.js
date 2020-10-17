@@ -63,10 +63,8 @@ WebApp.connectHandlers.use((req, res, next) => {
     const item = ShopItems.findOne({
       server: req.body['server'],
       player: req.body['player'],
-      item: {
-        id: parseInt(req.body['item']['id']),
-        enchant: parseInt(req.body['item']['enchant'])
-      }
+      'item.id': parseInt(req.body['item']['id']),
+      'item.enchant': parseInt(req.body['item']['enchant'])
     }, { sort: { createdAt: -1 }});
 
     if (item) {
