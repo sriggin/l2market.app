@@ -50,11 +50,11 @@ WebApp.connectHandlers.use((req, res, next) => {
     AccessCodes.update(
       { code: req.body['code'] },
       { expiresAt: new Date(parseInt(req.body['expiresAt']) * 1000) },
-      (error, result) => _callback(res, error, resul, 204));
+      (error, result) => _callback(res, error, result, 204));
 
   // Clear items
   } else if (req.url === '/ctrl/clear' && req.method === 'POST') {
-    ShopItems.remove({}, (error, result) => _callback(res, error, resul, 204));
+    ShopItems.remove({}, (error, result) => _callback(res, error, result, 204));
 
   // Add item
   } else if (req.url === '/ctrl/add' && req.method === 'POST') {
@@ -91,7 +91,7 @@ WebApp.connectHandlers.use((req, res, next) => {
         enchant: parseInt(req.body['item']['enchant'])
       },
       createdAt: new Date(parseInt(req.body['timestamp']) * 1000)
-    }, (error, result) => _callback(res, error, resul, 201));
+    }, (error, result) => _callback(res, error, result, 201));
   } else {
     next();
   }

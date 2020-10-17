@@ -4,7 +4,7 @@ import { Email } from 'meteor/email'
 import { ShopItems } from'/imports/api/shopitems.js';
 import { Timestamps } from'/imports/api/timestamps.js';
 
-Meteor.startup(() = {
+Meteor.startup(() => {
   if (process.env.L2MARKET_ONLINE_CHECK_RECIPIENT && process.env.MAIL_URL) {
     SyncedCron.add({
       name: 'Check if bot is online',
